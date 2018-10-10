@@ -1,4 +1,4 @@
-package com.dotin.course;
+package com.dotin.course.entities;
 
 import lombok.Builder;
 import lombok.Data;
@@ -11,9 +11,9 @@ import javax.persistence.Id;
  * @author Saeed Zarinfam
  */
 
-@Entity
 @Data
 @Builder
+@Entity
 public class Message {
 
     @Id
