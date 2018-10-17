@@ -19,4 +19,8 @@ public interface MessageService {
     static MessageService GET(){
         return new MessageServiceImpl();
     }
+
+    void delete(Message message);
+
+    void deleteAll();
 }

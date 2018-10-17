@@ -1,6 +1,7 @@
 package com.dotin.course.services;
 
 import com.dotin.course.entities.Message;
+import com.dotin.course.utils.EMF;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,38 +9,56 @@ import javax.persistence.Persistence;
 import java.util.List;
 import java.util.Optional;
 
+import static com.dotin.course.utils.EMF.*;
+
 /**
  * @author Saeed Zarinfam
  */
 public class MessageServiceImpl implements MessageService {
 
-    public final EntityManagerFactory emf = Persistence.createEntityManagerFactory("HelloWorldPU");
-
     @Override
     public Message save(Message message) {
+        return runJpaCode(em -> {
+            em.persist(message);
+            return message;
+        }, true);
+    }
+
+    @Override
+    public List<Message> getAll() {
+        return runJpaCode(em -> em.createQuery("select m from Message m").getResultList());
+    }
+
+    @Override
+    public Optional<Message> get(Long id) {
+        return runJpaCodeOpt(em -> em.find(Message.class, id));
+    }
+
+    @Override
+    public void delete(Message message) {
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
 
-        em.persist(message);
+        em.remove(message);
 
         em.getTransaction().commit();
 
         em.close();
 
-        return message;
     }
 
     @Override
-    public List<Message> getAll() {
+    public void deleteAll() {
         EntityManager em = emf.createEntityManager();
 
-        return em.createQuery("select m from Message m").getResultList();
+        em.getTransaction().begin();
 
-    }
+        em.createQuery("DELETE FROM Message").executeUpdate();
 
-    @Override
-    public Optional<Message> get(Long id) {
-        return Optional.ofNullable(emf.createEntityManager().find(Message.class, id));
+        em.getTransaction().commit();
+
+        em.close();
+
     }
 }
