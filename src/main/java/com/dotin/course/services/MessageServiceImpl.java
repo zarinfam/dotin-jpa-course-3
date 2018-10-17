@@ -36,29 +36,14 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public void delete(Message message) {
-        EntityManager em = emf.createEntityManager();
-
-        em.getTransaction().begin();
-
-        em.remove(message);
-
-        em.getTransaction().commit();
-
-        em.close();
-
+        runJpaCode(em -> {
+            em.remove(message);
+            return null;
+        }, true);
     }
 
     @Override
     public void deleteAll() {
-        EntityManager em = emf.createEntityManager();
-
-        em.getTransaction().begin();
-
-        em.createQuery("DELETE FROM Message").executeUpdate();
-
-        em.getTransaction().commit();
-
-        em.close();
-
+        runJpaCode(em -> em.createQuery("DELETE FROM Message").executeUpdate(), true);
     }
 }
