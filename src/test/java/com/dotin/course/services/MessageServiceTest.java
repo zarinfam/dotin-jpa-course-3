@@ -1,20 +1,14 @@
 package com.dotin.course.services;
 
 import com.dotin.course.entities.Message;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.Matchers;
-import org.hamcrest.beans.SamePropertyValuesAs;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static com.github.npathai.hamcrestopt.OptionalMatchers.isPresentAnd;
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.toList;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.samePropertyValuesAs;
