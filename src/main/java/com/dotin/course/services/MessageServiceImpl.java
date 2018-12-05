@@ -44,6 +44,9 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public void deleteAll() {
-        runJpaCode(em -> em.createQuery("DELETE FROM Message").executeUpdate(), true);
+        runJpaCode(em ->
+                        em.createQuery("DELETE FROM Message").executeUpdate()
+                , true
+        );
     }
 }

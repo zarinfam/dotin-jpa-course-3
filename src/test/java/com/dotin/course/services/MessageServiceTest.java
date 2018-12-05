@@ -26,14 +26,11 @@ public class MessageServiceTest {
 
     @Before
     public void init() {
+        messageService.deleteAll();
+
         message2 = Message.builder().message("message2").build();
 
         messageService.save(message2);
-    }
-
-    @After
-    public void clean() {
-        messageService.deleteAll();
     }
 
     @Test

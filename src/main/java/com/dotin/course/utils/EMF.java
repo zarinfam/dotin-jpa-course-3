@@ -9,13 +9,16 @@ import java.util.function.Function;
 /**
  * @author Saeed Zarinfam
  */
-public final class EMF {
-    private static final EntityManagerFactory INSTANCE = Persistence.createEntityManagerFactory("HelloWorldPU");
+public class EMF {
+    private static EntityManagerFactory INSTANCE = null;
 
     private EMF() {
     }
 
     public static EntityManagerFactory getInstance() {
+        if (INSTANCE == null){
+            INSTANCE = Persistence.createEntityManagerFactory("test_pu");
+        }
         return INSTANCE;
     }
 
