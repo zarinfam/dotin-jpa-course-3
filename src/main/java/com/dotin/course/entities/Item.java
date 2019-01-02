@@ -23,7 +23,9 @@ public class Item {
     @GeneratedValue
     private Long id;
 
-    @OneToMany(mappedBy = "item")
+    private String title;
+
+    @OneToMany(mappedBy = "item", cascade = CascadeType.PERSIST)
     private Set<Bid> bids = new HashSet<>();
 
     @ElementCollection

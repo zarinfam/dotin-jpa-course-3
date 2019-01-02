@@ -31,11 +31,10 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.0.1.Final</version>
         </dependency>
-
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.193</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.1.4</version>
         </dependency>
 
         <dependency>

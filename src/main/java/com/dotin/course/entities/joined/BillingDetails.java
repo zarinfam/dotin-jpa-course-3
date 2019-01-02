@@ -1,4 +1,5 @@
-package com.dotin.course.entities;
+package com.dotin.course.entities.joined;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,23 +8,17 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-/**
- * @author Saeed Zarinfam
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
-public class Bid {
+@DiscriminatorColumn(name="BD_TYPE")
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class BillingDetails {
+
     @Id
     @GeneratedValue
     private Long id;
 
-    private Long amount;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_ITEM_ID")
-    private Item item;
-
+    protected String owner;
 }
